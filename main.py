@@ -1,0 +1,23 @@
+import asyncio
+import logging
+from asyncio.exceptions import CancelledError
+
+from bot.create_bot import bot, dp
+from bot.handlers import main_router
+
+
+async def main() -> None:
+    try:
+        dp.include_router(main_router)
+        await bot.delete_webhook(drop_pending_updates=True)
+        await dp.start_polling(bot)
+
+    except (KeyboardInterrupt, CancelledError):
+        logging.info("Bot turned off by cancel")
+
+    finally:
+        await bot.session.close()
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
