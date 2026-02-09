@@ -5,6 +5,6 @@ from aiogram.types import Message
 router = Router()
 
 
-@router.message(CommandStart)
+@router.message(CommandStart())
 async def start(message: Message):
     await message.answer("Bot started")
