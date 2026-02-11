@@ -1,0 +1,10 @@
+*.pyc
+**/pycache
+
+.*
+
+.env
+.venv
+.mypy
+
+!.gitignore
