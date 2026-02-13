@@ -11,7 +11,7 @@ async def main() -> None:
     try:
         await init_models()
         dp.include_router(main_router)
-        await bot.delete_webhook(drop_pending_updates=True)
+        await bot.delete_webhook()
         await dp.start_polling(bot)
 
     except (KeyboardInterrupt, CancelledError):
