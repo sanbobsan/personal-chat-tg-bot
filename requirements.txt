@@ -14,6 +14,8 @@ aiohttp==3.13.3
     # via aiogram
 aiosignal==1.4.0
     # via aiohttp
+aiosqlite==0.22.1
+    # via -r requirements.in
 annotated-types==0.7.0
     # via pydantic
 attrs==25.4.0
@@ -24,6 +26,8 @@ frozenlist==1.8.0
     # via
     #   aiohttp
     #   aiosignal
+greenlet==3.3.1
+    # via sqlalchemy
 idna==3.11
     # via yarl
 magic-filter==1.0.12
@@ -42,11 +46,14 @@ pydantic-core==2.41.5
     # via pydantic
 python-decouple==3.8
     # via -r requirements.in
+sqlalchemy==2.0.46
+    # via -r requirements.in
 typing-extensions==4.15.0
     # via
     #   aiogram
     #   pydantic
     #   pydantic-core
+    #   sqlalchemy
     #   typing-inspection
 typing-inspection==0.4.2
     # via pydantic

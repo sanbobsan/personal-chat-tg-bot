@@ -7,5 +7,7 @@
 .venv
 .mypy
 
+*.sqlite3
+
 !.gitignore
 !.env.example
