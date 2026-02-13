@@ -30,16 +30,3 @@ async def status_cmd(message: Message, state: FSMContext) -> None:
         await message.reply("Сейчас не в чате")
         return
     await message.reply(f"Сейчас в чате с {(await state.get_data())['user_id']}")
-
-
-@router.message(Command("cancel", "exit", "stop"), StateFilter(AdminStates.in_chat))
-async def cancel_chat_cmd(message: Message, state: FSMContext):
-    user_id: int = (await state.get_data())["user_id"]
-    await state.clear()
-    await message.answer(f"Чат с {user_id} закончен...")
-
-
-@router.message(StateFilter(AdminStates.in_chat))
-async def echo(message: Message, state: FSMContext) -> None:
-    user_id: int = (await state.get_data())["user_id"]
-    await message.answer(f'Передаю сообщение "{message.text}" -> {user_id}...')
