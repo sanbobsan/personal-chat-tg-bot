@@ -7,17 +7,21 @@ from .database_helper import engine
 from .models import User
 
 
-async def create_user(user_id: int, name: str) -> None:
-    async with AsyncSession(engine) as session:
-        new_user = User(user_id=user_id, name=name)
-        session.add(new_user)
-        await session.commit()
-
-
 async def _get_user(session: AsyncSession, user_id: int) -> User | None:
     statement: Select[Tuple[User]] = select(User).where(User.user_id == user_id)
     user: User | None = await session.scalar(statement)
     return user
+
+
+async def create_user(user_id: int, name: str) -> User | None:
+    async with AsyncSession(engine) as session:
+        user: User | None = await _get_user(session, user_id)
+        if user:
+            return user
+        new_user = User(user_id=user_id, name=name)
+        session.add(new_user)
+        await session.commit()
+        return
 
 
 async def read_user(user_id: int) -> User | None:
