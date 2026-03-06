@@ -2,3 +2,4 @@ aiogram
 python-decouple
 sqlalchemy
 aiosqlite
+alembic
